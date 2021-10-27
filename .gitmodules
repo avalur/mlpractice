@@ -1,0 +1,3 @@
+[submodule "mlpractice_solutions"]
+	path = mlpractice_solutions
+	url = https://github.com/avalur/mlpractice_solutions.git

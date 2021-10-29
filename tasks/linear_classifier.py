@@ -118,7 +118,7 @@ class LinearSoftmaxClassifier:
 
     def fit(self, X, y, batch_size=100, learning_rate=1e-7, reg_strength=1e-5,
             epochs=1):
-        """Trains linear classifier.
+        r"""Trains linear classifier.
 
         Parameters
         ----------
@@ -166,7 +166,7 @@ class LinearSoftmaxClassifier:
         return loss_history
 
     def predict(self, X):
-        """Predict classes for `X`.
+        r"""Predict classes for `X`.
 
         Parameters
         ----------

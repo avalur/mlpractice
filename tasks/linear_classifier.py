@@ -37,7 +37,7 @@ def cross_entropy_loss(probs, target_index):
     """
     # TODO: implement cross_entropy_loss
     # Your final implementation shouldn't have any loops
-    raise NotImplementedError("Not implemented!")
+    raise NotImplementedError('Not implemented!')
 
 
 def softmax_with_cross_entropy(predictions, target_index):
@@ -61,7 +61,7 @@ def softmax_with_cross_entropy(predictions, target_index):
     """
     # TODO: implement softmax_with_cross_entropy
     # Your final implementation shouldn't have any loops
-    raise NotImplementedError("Not implemented!")
+    raise NotImplementedError('Not implemented!')
 
 
 def l2_regularization(W, reg_strength):
@@ -83,7 +83,7 @@ def l2_regularization(W, reg_strength):
     """
     # TODO: implement l2_regularization
     # Your final implementation shouldn't have any loops
-    raise NotImplementedError("Not implemented!")
+    raise NotImplementedError('Not implemented!')
 
 
 def linear_softmax(X, W, target_index):
@@ -109,7 +109,7 @@ def linear_softmax(X, W, target_index):
     # TODO: implement linear_softmax
     # Your final implementation shouldn't have any loops
     predictions = X @ W
-    raise NotImplementedError("Not implemented!")
+    raise NotImplementedError('Not implemented!')
 
 
 class LinearSoftmaxClassifier:
@@ -160,8 +160,8 @@ class LinearSoftmaxClassifier:
             #       and regularization!
 
             # end
-            raise NotImplementedError("Not implemented!")
-            print("Epoch %i, loss: %f" % (epoch, loss))
+            raise NotImplementedError('Not implemented!')
+            print(f'Epoch: {epoch}, loss: {loss}')
 
         return loss_history
 
@@ -180,4 +180,4 @@ class LinearSoftmaxClassifier:
         """
         # TODO: Implement predict
         # Your final implementation shouldn't have any loops
-        raise NotImplementedError("Not implemented!")
+        raise NotImplementedError('Not implemented!')

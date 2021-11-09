@@ -1,3 +1,10 @@
+"""Linear_classifier file docstring.
+
+Just checking.
+
+Nothing here.
+"""
+
 import numpy as np
 
 

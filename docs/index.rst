@@ -6,8 +6,7 @@
 Welcome to mlpractice's documentation!
 ======================================
 
-.. automodule:: mlpractice
-    :members:
+.. np:module:: mlpractice
 
 
 

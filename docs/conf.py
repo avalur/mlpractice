@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'mlpractice'
-copyright = '2021, Sample Name'
+project_copyright = '2021, Sample Name'
 author = 'Sample Name'
 
 # The full version, including alpha/beta/rc tags
@@ -31,6 +31,7 @@ release = '0.1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'autodoc',
     'numpydoc',
 ]
 

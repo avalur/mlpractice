@@ -10,9 +10,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: SomeModuleName
+.. automodule:: mlpractice
 
-.. autoclass:: SomeClassName
+.. autoclass:: LinearSoftmaxClassifier
     :members:
 
 Indices and tables

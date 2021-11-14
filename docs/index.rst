@@ -5,11 +5,15 @@
 
 Welcome to mlpractice's documentation!
 ======================================
+Contents:
 
-.. automodule:: mlpractice
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: SomeModuleName
+
+.. autoclass:: SomeClassName
     :members:
-
-
 
 Indices and tables
 ==================

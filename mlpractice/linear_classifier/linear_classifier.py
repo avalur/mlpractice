@@ -1,10 +1,3 @@
-"""Linear_classifier file docstring.
-
-Just checking.
-
-Nothing here.
-"""
-
 import numpy as np
 
 
@@ -100,18 +93,18 @@ def linear_softmax(X, W, target_index):
 
     Parameters
     ----------
-    X : ndarray, shape(batch_size, n_features)
+    X : `ndarray`, shape(batch_size, n_features)
         Batch of images.
-    W : ndarray, shape(n_features, n_classes)
+    W : `ndarray`, shape(n_features, n_classes)
         Weights.
-    target_index : ndarray, shape(batch_size)
+    target_index : `ndarray`, shape(batch_size)
         Indices of the true classes for given samples.
 
     Returns
     -------
     loss : float
         Computed cross-entropy loss value.
-    gradient : ndarray, shape(n_features, n_classes)
+    gradient : `ndarray`, shape(n_features, n_classes)
         Gradient of loss with respect to weights.
     """
     # TODO: implement linear_softmax
@@ -121,6 +114,13 @@ def linear_softmax(X, W, target_index):
 
 
 class LinearSoftmaxClassifier:
+    r"""Linear softmax classifier class.
+
+    Attributes
+    ----------
+    W : ndarray
+        Weights.
+    """
     def __init__(self):
         self.W = None
 
@@ -145,8 +145,8 @@ class LinearSoftmaxClassifier:
 
         Returns
         -------
-            loss_history: array_like
-        `loss_history` holds a record of the loss values during training
+            loss_history : array_like
+        `loss_history` holds a record of the loss values during training.
         """
         n_train = X.shape[0]
         n_features = X.shape[1]
@@ -174,7 +174,7 @@ class LinearSoftmaxClassifier:
         return loss_history
 
     def predict(self, X):
-        r"""Predict classes for `X`.
+        r"""Predicts classes for `X`.
 
         Parameters
         ----------
@@ -183,7 +183,7 @@ class LinearSoftmaxClassifier:
 
         Returns
         -------
-            y_pred: ndarray, shape(n_samples)
+            y_pred : ndarray, shape(n_samples)
         The predicted classes.
         """
         # TODO: Implement predict

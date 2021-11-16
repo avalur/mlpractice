@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ssh-key: ${{ secrets.CI }}
+          ssh-key: ${{ secrets.GITHUB_TOKEN }}
           submodules: 'recursive'
       - uses: actions/setup-python@v2
         with:
@@ -28,5 +28,3 @@ jobs:
         run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CI }}

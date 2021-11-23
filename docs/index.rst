@@ -7,6 +7,7 @@ Welcome to mlpractice's documentation!
     :maxdepth: 2
 
     linear_classifier/index.rst
+    rnn_torch/index.rst
 
 Indices and tables
 ==================

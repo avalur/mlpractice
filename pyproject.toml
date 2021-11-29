@@ -3,6 +3,9 @@ name = "mlpractice"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
+packages = [
+    { include = "mlpractice" },
+]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
@@ -16,6 +19,9 @@ safety = "^1.10.3"
 pytest-cov = "^3.0.0"
 numpydoc = "^1.1.0"
 Sphinx = "^4.3.0"
+
+[tool.poetry.scripts]
+mlpractice = "mlpractice.cli:command_line"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,18 +1,22 @@
-from mlpractice_solutions.mlpractice_solutions.linear_classifier_solution\
-    import softmax
+try:
+    from mlpractice_solutions.\
+        mlpractice_solutions.linear_classifier_solution import softmax
+except ImportError:
+    softmax = None
 
 from scipy.special import softmax as softmax_sample
 import numpy as np
 
 
-def test_all():
-    test_public()
-    test_default()
-    test_normalization()
-    test_random(100)
+def test_all(softmax=softmax):
+    test_public(softmax)
+    test_default(softmax)
+    test_normalization(softmax)
+    test_random(softmax, 100)
+    print('All tests passed!')
 
 
-def test_public():
+def test_public(softmax=softmax):
     x = np.array([1, 2, 3])
 
     y_sample = softmax_sample(x)
@@ -21,7 +25,7 @@ def test_public():
     assert np.all(np.abs(y - y_sample) < 10 ** -8)
 
 
-def test_default():
+def test_default(softmax=softmax):
     x = np.array([[1, 0.5, 0.2, 3],
                   [1, -1, 7, 3],
                   [2, 12, 13, 3]])
@@ -32,7 +36,7 @@ def test_default():
     assert np.all(np.abs(y - y_sample) < 10 ** -8)
 
 
-def test_normalization():
+def test_normalization(softmax=softmax):
     x = np.array([10000, 0, 0])
 
     y_sample = softmax_sample(x)
@@ -41,7 +45,7 @@ def test_normalization():
     assert np.all(np.abs(y - y_sample) < 10 ** -8)
 
 
-def test_random(iterations=1):
+def test_random(softmax=softmax, iterations=1):
     np.random.seed(42)
 
     for _ in range(iterations):

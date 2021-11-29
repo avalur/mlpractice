@@ -1,17 +1,21 @@
-from mlpractice_solutions.mlpractice_solutions.linear_classifier_solution\
-    import linear_softmax
+try:
+    from mlpractice_solutions.mlpractice_solutions\
+        .linear_classifier_solution import linear_softmax
+except ImportError:
+    linear_softmax = None
 
 import torch
 import numpy as np
 
 
-def test_all():
-    test_public()
-    test_normalization()
-    test_random(100)
+def test_all(linear_softmax=linear_softmax):
+    test_public(linear_softmax)
+    test_normalization(linear_softmax)
+    test_random(linear_softmax, 100)
+    print('All tests passed!')
 
 
-def test_public():
+def test_public(linear_softmax=linear_softmax):
     objects = np.array([[1, 2, 3],
                         [4, 5, 6],
                         [7, 8, 9]])
@@ -38,7 +42,7 @@ def test_public():
                   10 ** -6)
 
 
-def test_normalization():
+def test_normalization(linear_softmax=linear_softmax):
     objects = np.array([[0, 0, 10000]])
     weights = np.array([[1, 0, 0],
                         [0, 1, 0],
@@ -63,7 +67,7 @@ def test_normalization():
                   10 ** -6)
 
 
-def test_random(iterations=1):
+def test_random(linear_softmax=linear_softmax, iterations=1):
     np.random.seed(42)
 
     for _ in range(iterations):

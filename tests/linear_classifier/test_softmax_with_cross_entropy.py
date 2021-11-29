@@ -1,17 +1,21 @@
-from mlpractice_solutions.mlpractice_solutions.linear_classifier_solution\
-    import softmax_with_cross_entropy
+try:
+    from mlpractice_solutions.mlpractice_solutions.\
+        linear_classifier_solution import softmax_with_cross_entropy
+except ImportError:
+    softmax_with_cross_entropy = None
 
 import torch
 import numpy as np
 
 
-def test_all():
-    test_public()
-    test_normalization()
-    test_random(100)
+def test_all(softmax_with_cross_entropy=softmax_with_cross_entropy):
+    test_public(softmax_with_cross_entropy)
+    test_normalization(softmax_with_cross_entropy)
+    test_random(softmax_with_cross_entropy, 100)
+    print('All tests passed!')
 
 
-def test_public():
+def test_public(softmax_with_cross_entropy=softmax_with_cross_entropy):
     predictions = np.array([1, 2, 3])
     target_index = np.array([2])
 
@@ -30,7 +34,7 @@ def test_public():
                          - predictions_tensor.grad.numpy()) < 10 ** -6)
 
 
-def test_normalization():
+def test_normalization(softmax_with_cross_entropy=softmax_with_cross_entropy):
     predictions = np.array([0, 0, 10000])
     target_index = np.array([2])
 
@@ -49,7 +53,7 @@ def test_normalization():
                          - predictions_tensor.grad.numpy()) < 10 ** -6)
 
 
-def test_random(iterations=1):
+def test_random(softmax_with_cross_entropy=softmax_with_cross_entropy, iterations=1):
     np.random.seed(42)
 
     for _ in range(iterations):

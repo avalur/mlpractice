@@ -1,8 +1,11 @@
 [tool.poetry]
 name = "mlpractice"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = [
+    "Vladislav Ushakov <uvd2001@mail.ru>",
+    "Alexander Avdyushenko <ovalur@gmail.com>",
+]
 packages = [
     { include = "mlpractice" },
 ]

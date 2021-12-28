@@ -10,6 +10,7 @@ def test_all(make_token_to_id=make_token_to_id):
     test_simple(make_token_to_id)
     print('All tests passed!')
 
+
 def test_len(make_token_to_id=make_token_to_id):
     tokens = ["Make", "ML", "great"]
 

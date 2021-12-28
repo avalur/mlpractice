@@ -59,7 +59,8 @@ def init():
     for dir_path, dir_names, filenames in os.walk(tasks_dir):
         for filename in filenames:
             file_path = os.path.join(dir_path, filename)
-            inject_sources_into_template(file_path)
+            if file_path.endswith('.ipynb'):
+                inject_sources_into_template(file_path)
 
     print(f'Initialized a directory with tasks at {tasks_dir}')
 

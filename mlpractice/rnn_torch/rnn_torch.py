@@ -39,13 +39,13 @@ class CharRNNCell(nn.Module):
     r"""
     Implement vanilla rnn-cell as torch module
     """
-    def __init__(self, num_tokens=len(tokens), embedding_size=16, rnn_num_units=64):
-        super(self.__class__,self).__init__()
-        self.num_units = rnn_num_units
-
-        self.embedding = nn.Embedding(num_tokens, embedding_size)
-        self.rnn_update = nn.Linear(embedding_size + rnn_num_units, rnn_num_units)
-        self.rnn_to_logits = nn.Linear(rnn_num_units, num_tokens)
+    # def __init__(self, num_tokens=len(tokens), embedding_size=16, rnn_num_units=64):
+    #     super(self.__class__, self).__init__()
+    #     self.num_units = rnn_num_units
+    #
+    #     self.embedding = nn.Embedding(num_tokens, embedding_size)
+    #     self.rnn_update = nn.Linear(embedding_size + rnn_num_units, rnn_num_units)
+    #     self.rnn_to_logits = nn.Linear(rnn_num_units, num_tokens)
 
     def forward(self, x, h_prev):
         r"""
@@ -82,29 +82,30 @@ from IPython.display import clear_output
 from random import sample
 
 char_rnn = CharRNNCell()
-optimizer = torch.optim.Adam(char_rnn.parameters())
+# optimizer = torch.optim.Adam(char_rnn.parameters())
 history = []
 
 
 def train(lines):
     for i in range(1000):
-        batch_ix = to_matrix(sample(lines, 32), max_len=MAX_LENGTH)
-        batch_ix = torch.tensor(batch_ix, dtype=torch.int64)
-
-        # TODO: implement train loop
-
-        logp_seq = rnn_loop(char_rnn, batch_ix)
-
-        # TODO: compute loss
-
-
-        # loss = ...
-
-        # TODO: backprop
-
-        history.append(loss.data.numpy())
-        if (i+1)%100==0:
-            clear_output(True)
-            plt.plot(history,label='loss')
-            plt.legend()
-            plt.show()
+        ...
+        # batch_ix = to_matrix(sample(lines, 32), max_len=MAX_LENGTH)
+        # batch_ix = torch.tensor(batch_ix, dtype=torch.int64)
+        #
+        # # TODO: implement train loop
+        #
+        # logp_seq = rnn_loop(char_rnn, batch_ix)
+        #
+        # # TODO: compute loss
+        #
+        #
+        # # loss = ...
+        #
+        # # TODO: backprop
+        #
+        # history.append(loss.data.numpy())
+        # if (i+1)%100==0:
+        #     clear_output(True)
+        #     plt.plot(history,label='loss')
+        #     plt.legend()
+        #     plt.show()

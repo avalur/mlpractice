@@ -5,3 +5,16 @@ Surely no human has expertize over what is a good child name, so let us train RN
 
 You should fill in the gaps in the given function templates.
 """
+from .rnn_torch import (
+    make_tokens,
+    make_token_to_id,
+    CharRNNCell,
+    train,
+)
+
+__all__ = [
+    "make_tokens",
+    "make_token_to_id",
+    "CharRNNCell",
+    "train",
+]

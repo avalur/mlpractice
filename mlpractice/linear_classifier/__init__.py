@@ -8,7 +8,7 @@ from .linear_classifier import (
     softmax_with_cross_entropy,
     l2_regularization,
     linear_softmax,
-    LinearSoftmaxClassifier
+    LinearSoftmaxClassifier,
 )
 
 __all__ = [
@@ -17,5 +17,5 @@ __all__ = [
     "softmax_with_cross_entropy",
     "l2_regularization",
     "linear_softmax",
-    "LinearSoftmaxClassifier"
+    "LinearSoftmaxClassifier",
 ]

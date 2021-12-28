@@ -9,3 +9,4 @@ rnn_torch
    :maxdepth: 2
 
    make_tokens
+   make_token_to_id

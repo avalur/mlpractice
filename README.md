@@ -1,4 +1,7 @@
 # <div align="center">MLpractice</div>
+<a href='https://mlpractice.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/mlpractice/badge/?version=latest' alt='Documentation Status' />
+</a>
 
 MLpractice 🚀 is a course, in which you will learn about the most effective machine learning techniques, and gain practice implementing them.
 

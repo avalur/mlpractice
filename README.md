@@ -7,7 +7,7 @@ MLpractice 🚀 is a course, in which you will learn about the most effective ma
 
 ## <div align="center">Documentation</div>
 
-See the [MLpractice Docs]() for full documentation on course task functions.
+See the [MLpractice Docs](https://readthedocs.org/projects/mlpractice/badge/?version=latest) for full documentation on course task functions.
 
 ## <div align="center">Quick Start</div>
 

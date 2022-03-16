@@ -1,15 +1,29 @@
 [tool.poetry]
+
 name = "mlpractice"
-version = "0.0.1"
-description = ""
+
+version = "0.0.2"
+
+description = "MLpractice is a course, in which you will learn about the most effective machine learning techniques,and gain practice implementing them."
+
 authors = [
     "Vladislav Ushakov <uvd2001@mail.ru>",
     "Alexander Avdyushenko <ovalur@gmail.com>",
 ]
 
+license = "MIT"
+
 packages = [
     { include = "mlpractice" },
 ]
+
+readme = "README.md"
+
+homepage = "https://github.com/avalur/mlpractice"
+
+keywords = ["machinelearning", "deeplearning", "ml", "dl", "practice", "mlpractice", "machine", "deep"]
+
+include = ["LICENSE"]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<=3.9"

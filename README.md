@@ -1,0 +1,51 @@
+<div align="center">
+  <p>
+    MLpractice
+<!--     <a href="https://github.com/ultralytics/yolov5/actions"><img src="https://github.com/ultralytics/yolov5/workflows/CI%20CPU%20testing/badge.svg" alt="CI CPU testing"></a> -->
+  </p>
+
+MLpractice 🚀 is a course, in which you will learn about the most effective machine learning techniques, and gain practice implementing them.
+</div>
+
+## <div align="center">Documentation</div>
+
+See the [MLpractice Docs]() for full documentation on course task functions.
+
+## <div align="center">Quick Start</div>
+
+<details open>
+<summary>Install</summary>
+  
+### Pip
+Pip install it in a [**Python>=3.7.0**](https://www.python.org/) environment.
+```bash
+pip install mlpractice
+```
+
+<!-- ### Clone and install
+Clone repo and install [requirements.txt](https://github.com/avalur/mlpractice/blob/main/requirements.txt) in a
+[**Python>=3.7.0**](https://www.python.org/) environment.
+
+```bash
+git clone https://github.com/avalur/mlpractice  # clone
+cd mlpractice
+pip install -r requirements.txt  # install
+``` -->
+
+</details>
+
+<details open>
+<summary>Init</summary>
+
+Make a course folder with tasks by simply running
+```bash
+mlpractice init
+```
+
+</details>
+
+## <div align="center">Contact</div>
+
+For MLpractice bugs and feature requests please visit [GitHub Issues](https://github.com/avalur/mlpractice/issues).
+
+</div>

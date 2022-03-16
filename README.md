@@ -1,11 +1,6 @@
-<div align="center">
-  <p>
-    MLpractice
-<!--     <a href="https://github.com/ultralytics/yolov5/actions"><img src="https://github.com/ultralytics/yolov5/workflows/CI%20CPU%20testing/badge.svg" alt="CI CPU testing"></a> -->
-  </p>
+# <div align="center">MLpractice</div>
 
 MLpractice 🚀 is a course, in which you will learn about the most effective machine learning techniques, and gain practice implementing them.
-</div>
 
 ## <div align="center">Documentation</div>
 

@@ -93,18 +93,18 @@ def linear_softmax(X, W, target_index):
 
     Parameters
     ----------
-    X : `ndarray`, shape(batch_size, n_features)
+    X : ndarray, shape(batch_size, n_features)
         Batch of images.
-    W : `ndarray`, shape(n_features, n_classes)
+    W : ndarray, shape(n_features, n_classes)
         Weights.
-    target_index : `ndarray`, shape(batch_size)
+    target_index : ndarray, shape(batch_size)
         Indices of the true classes for given samples.
 
     Returns
     -------
     loss : float
         Computed cross-entropy loss value.
-    gradient : `ndarray`, shape(n_features, n_classes)
+    gradient : ndarray, shape(n_features, n_classes)
         Gradient of loss with respect to weights.
     """
     # TODO: implement linear_softmax
@@ -130,23 +130,23 @@ class LinearSoftmaxClassifier:
 
         Parameters
         ----------
-            X : ndarray, shape(n_samples, n_features)
-                Training data.
-            y : ndarray, shape(n_samples)
-                Training data class labels.
-            batch_size : int, optional
-                The number of samples to use for each batch.
-            learning_rate : float, optional
-                Learning rate for gradient descent.
-            reg_strength : float, optional
-                L2 regularization strength.
-            epochs : int, optional
-                The number of passes over the training data.
+        X : ndarray, shape(n_samples, n_features)
+            Training data.
+        y : ndarray, shape(n_samples)
+            Training data class labels.
+        batch_size : int, optional
+            The number of samples to use for each batch.
+        learning_rate : float, optional
+            Learning rate for gradient descent.
+        reg_strength : float, optional
+            L2 regularization strength.
+        epochs : int, optional
+            The number of passes over the training data.
 
         Returns
         -------
-            loss_history : array_like
-        `loss_history` holds a record of the loss values during training.
+        loss_history : array_like
+            Holds a record of the loss values during training.
         """
         n_train = X.shape[0]
         n_features = X.shape[1]
@@ -178,13 +178,13 @@ class LinearSoftmaxClassifier:
 
         Parameters
         ----------
-            X : ndarray, shape(n_samples, n_features)
-                The input samples.
+        X : ndarray, shape(n_samples, n_features)
+            Input samples.
 
         Returns
         -------
-            y_pred : ndarray, shape(n_samples)
-        The predicted classes.
+        y_pred : ndarray, shape(n_samples)
+            Predicted classes.
         """
         # TODO: Implement predict
         # Your final implementation shouldn't have any loops

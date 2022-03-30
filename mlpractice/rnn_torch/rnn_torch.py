@@ -131,7 +131,7 @@ def train_rnn(encoded_lines, model, optimizer):
 
     Parameters
     ----------
-    encoded_lines : np.ndarray, shape(, MAX_LENGTH)
+    encoded_lines : np.ndarray, shape(n_samples, MAX_LENGTH)
         Lines of input text converted to a matrix.
     model : torch.nn.Module
         A model to train.

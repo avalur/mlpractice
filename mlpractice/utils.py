@@ -7,6 +7,11 @@ from distutils.dir_util import copy_tree
 import mlpractice
 
 
+class StopExecution(Exception):
+    def _render_traceback_(self):
+        pass
+
+
 class ExceptionInterception:
     def __init__(self):
         self.ip = get_ipython()
@@ -17,6 +22,7 @@ class ExceptionInterception:
     def __exit__(self, exc_type, exc_val, traceback):
         if exc_val is not None:
             self.ip.showtraceback((exc_type, exc_val, traceback))
+            raise StopExecution
         return True
 
 

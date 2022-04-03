@@ -1,5 +1,5 @@
 import argparse
-from utils import init
+from mlpractice.utils import init
 
 
 def command_line():

@@ -126,7 +126,7 @@ def rnn_loop(char_rnn, batch_ix):
     return torch.stack(log_probs, dim=1)
 
 
-def train_rnn(encoded_lines, model, optimizer):
+def train_rnn(encoded_lines, model, optimizer, iterations=1000):
     r"""Trains RNN on a given text.
 
     Parameters
@@ -137,6 +137,8 @@ def train_rnn(encoded_lines, model, optimizer):
         A model to train.
     optimizer : torch.optim.Optimizer
         Optimizer that will be used to train a model.
+    iterations : int, optional
+        Number of optimization steps that the model will make.
 
     Returns
     -------
@@ -145,7 +147,7 @@ def train_rnn(encoded_lines, model, optimizer):
     """
     training_history = []
 
-    for i in range(1000):
+    for i in range(iterations):
         batch_indices = np.random.choice(len(encoded_lines), 32, replace=False)
 
         batch_ix = encoded_lines[batch_indices]

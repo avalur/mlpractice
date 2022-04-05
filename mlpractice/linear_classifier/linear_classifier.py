@@ -56,7 +56,7 @@ def softmax_with_cross_entropy(predictions, target_index):
     -------
     loss : float
         Computed cross-entropy loss value.
-    dpredictions : ndarray
+    d_predictions : ndarray
         Array, with the same shape as `predictions`. Gradient of loss value
         with respect to predictions.
     """

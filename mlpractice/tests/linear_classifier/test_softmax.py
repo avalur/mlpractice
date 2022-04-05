@@ -11,11 +11,31 @@ import numpy as np
 
 
 def test_all(softmax=softmax):
+    test_interface(softmax)
     test_public(softmax)
     test_default(softmax)
     test_normalization(softmax)
     test_random(softmax, 100)
     print('All tests passed!')
+
+
+def test_interface(softmax=softmax):
+    with ExceptionInterception():
+        x1 = np.array([1, 2, 3])
+        x2 = np.array([[1, 2, 3],
+                       [1, 2, 3]])
+
+        y1 = softmax(x1)
+        y2 = softmax(x2)
+
+        assert isinstance(y1, np.ndarray), \
+            "softmax must return an ndarray"
+        assert x1.shape == y1.shape, \
+            "The output shape must match the input shape"
+        assert isinstance(y2, np.ndarray), \
+            "softmax must return an ndarray"
+        assert x2.shape == y2.shape, \
+            "The output shape must match the input shape"
 
 
 def test_public(softmax=softmax):

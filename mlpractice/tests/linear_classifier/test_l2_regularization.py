@@ -11,10 +11,27 @@ import torch
 
 
 def test_all(l2_regularization=l2_regularization):
+    test_interface(l2_regularization)
     test_public(l2_regularization)
     test_default(l2_regularization)
     test_random(l2_regularization, 100)
     print('All tests passed!')
+
+
+def test_interface(l2_regularization=l2_regularization):
+    with ExceptionInterception():
+        weights = np.array([[0, 1],
+                            [1, 0]])
+        reg_strength = 0.5
+
+        loss, grad = l2_regularization(weights, reg_strength)
+
+        assert isinstance(loss, float), \
+            "l2_regularization must return a float and an ndarray"
+        assert isinstance(grad, np.ndarray), \
+            "l2_regularization must return a float and an ndarray"
+        assert grad.shape == weights.shape, \
+            "The output gradient shape must match the W shape"
 
 
 def test_public(l2_regularization=l2_regularization):

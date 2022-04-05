@@ -11,10 +11,28 @@ from mlpractice.utils import ExceptionInterception
 
 
 def test_all(cross_entropy_loss=cross_entropy_loss):
+    test_interface(cross_entropy_loss)
     test_public(cross_entropy_loss)
     test_default(cross_entropy_loss)
     test_random(cross_entropy_loss, 100)
     print('All tests passed!')
+
+
+def test_interface(cross_entropy_loss=cross_entropy_loss):
+    with ExceptionInterception():
+        probs1 = np.array([0.1, 0.2, 0.7])
+        target_index1 = np.array([2])
+        probs2 = np.array([[0.1, 0.2, 0.7],
+                           [0.1, 0.2, 0.7]])
+        target_index2 = np.array([2, 2])
+
+        loss1 = cross_entropy_loss(probs1, target_index1)
+        loss2 = cross_entropy_loss(probs2, target_index2)
+
+        assert isinstance(loss1, float), \
+            "cross_entropy_loss must return a float"
+        assert isinstance(loss2, float), \
+            "cross_entropy_loss must return a float"
 
 
 def test_public(cross_entropy_loss=cross_entropy_loss):
@@ -37,8 +55,10 @@ def test_default(cross_entropy_loss=cross_entropy_loss):
 
         loss = torch.nn.CrossEntropyLoss(reduction='sum')
 
-        sample_output = loss(torch.from_numpy(predictions[np.newaxis, :]).float(),
-                             torch.from_numpy(target_index).long())
+        sample_output = loss(
+            torch.from_numpy(predictions[np.newaxis, :]).float(),
+            torch.from_numpy(target_index).long(),
+        )
 
         assert abs(cross_entropy_loss(probs, target_index) - sample_output) < \
                10 ** -6
@@ -59,5 +79,6 @@ def test_random(cross_entropy_loss=cross_entropy_loss, iterations=1):
             sample_output = loss(torch.from_numpy(predictions).float(),
                                  torch.from_numpy(target_index).long())
 
-            assert abs(cross_entropy_loss(probs, target_index) - sample_output) < \
-                   10 ** -6
+            assert abs(
+                cross_entropy_loss(probs, target_index) - sample_output
+            ) < 10 ** -6

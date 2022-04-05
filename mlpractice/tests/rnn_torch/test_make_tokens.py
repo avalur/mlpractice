@@ -34,7 +34,9 @@ def test_interface(make_tokens=make_tokens):
 def test_simple(make_tokens=make_tokens):
     with ExceptionInterception():
         input_text = "Make ML practice great!"
-        expected = {'M', 'a', 'k', 'e', ' ', 'L', 'p', 'r', 'c', 't', 'i', 'g', '!'}
+        expected = {
+            'M', 'a', 'k', 'e', ' ', 'L', 'p', 'r', 'c', 't', 'i', 'g', '!',
+        }
 
         tokens = make_tokens(input_text)
         assert set(tokens) == expected, \

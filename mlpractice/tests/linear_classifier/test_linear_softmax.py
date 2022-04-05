@@ -11,10 +11,43 @@ import numpy as np
 
 
 def test_all(linear_softmax=linear_softmax):
+    test_interface(linear_softmax)
     test_public(linear_softmax)
     test_normalization(linear_softmax)
     test_random(linear_softmax, 100)
     print('All tests passed!')
+
+
+def test_interface(linear_softmax=linear_softmax):
+    with ExceptionInterception():
+        objects1 = np.array([[1, 2, 3],
+                            [4, 5, 6],
+                            [7, 8, 9]])
+        weights1 = np.array([[1, 2, 3],
+                            [4, 5, 6],
+                            [7, 8, 9]])
+        target_index1 = np.array([0, 1, 2])
+        loss1, gradient1 = linear_softmax(objects1, weights1, target_index1)
+
+        objects2 = np.array([[1],
+                             [2],
+                             [3]])
+        weights2 = np.array([[1, 2, 3]])
+        target_index2 = np.array([0])
+        loss2, gradient2 = linear_softmax(objects2, weights2, target_index2)
+
+        assert isinstance(loss1, float), \
+            "linear_softmax must return a float and an ndarray"
+        assert isinstance(gradient1, np.ndarray), \
+            "linear_softmax must return a float and an ndarray"
+        assert gradient1.shape == weights1.shape, \
+            "The output gradient shape must match the W shape"
+        assert isinstance(loss2, float), \
+            "linear_softmax must return a float and an ndarray"
+        assert isinstance(gradient2, np.ndarray), \
+            "linear_softmax must return a float and an ndarray"
+        assert gradient2.shape == weights2.shape, \
+            "The output gradient shape must match the W shape"
 
 
 def test_public(linear_softmax=linear_softmax):

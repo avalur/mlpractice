@@ -3,6 +3,7 @@ import os
 import re
 import sys
 from distutils.dir_util import copy_tree
+from IPython import get_ipython
 
 import mlpractice
 

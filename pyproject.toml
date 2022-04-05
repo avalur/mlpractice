@@ -14,7 +14,7 @@ authors = [
 license = "MIT"
 
 packages = [
-    { include = "mlpractice" },
+    {include = "mlpractice"},
 ]
 
 readme = "README.md"

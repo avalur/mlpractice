@@ -9,11 +9,27 @@ import mlpractice
 
 
 class StopExecution(Exception):
+    """A custom exception made for silent kernel interruption.
+    Being raised outputs no message under the cell in Jupyter notebooks.
+    """
     def _render_traceback_(self):
+        """A special method that is responsible for rendering the exception
+        in Jupyter notebooks.
+        """
         pass
 
 
 class ExceptionInterception:
+    """A context manager that intercepts any exception coming from within it
+    and immediately outputs the exception content. Thus, printed exception
+    traceback doesn't include any information about the code beyond the
+    context manager.
+
+    Examples
+    --------
+    >>> with ExceptionInterception():
+    ...     ...
+    """
     def __init__(self):
         self.ip = get_ipython()
 
@@ -22,12 +38,16 @@ class ExceptionInterception:
 
     def __exit__(self, exc_type, exc_val, traceback):
         if exc_val is not None:
+            # print the exception message and traceback
             self.ip.showtraceback((exc_type, exc_val, traceback))
+            # raise a silent exception to interrupt the kernel
             raise StopExecution
         return True
 
 
-def get_source(match):
+def get_source(match: re.Match) -> str:
+    """Extract source code lines of a matched object and prepare them
+    to being injected into .ipynb code cell."""
     match_object = eval(match.group()[9:-1])
     source_lines = inspect.getsourcelines(match_object)[0]
     new_lines = [line.rstrip() for line in source_lines]
@@ -40,23 +60,29 @@ def get_source(match):
         in new_lines
     ]
 
+    # delete the redundant `"` prefix of the first line
     new_lines[0] = new_lines[0][1:]
+    # delete the redundant `\n",` suffix of the last line
     new_lines[-1] = new_lines[-1][:-4]
 
     return ''.join(new_lines)
 
 
-def inject_sources_into_template(file_path):
-    """Inject python source code into the file in places marked with
+def inject_sources_into_template(file_path: str):
+    """Inject python source code into the code cells of .ipynb file
+    in places marked with
     #!source<python_object>
     """
-    with open(file_path, 'r') as target_file:
+    with open(file_path, 'rt') as target_file:
         file_as_text = target_file.read()
 
+    # compile a regular expression that finds the #!source<python_object> marks
     reg_exp = re.compile(r'#!source<.+?>')
+    # find all the occurrences of `reg_exp` in `file_as_text`
+    # and replace them using the `get_source` function
     modified_file_as_text = reg_exp.sub(get_source, file_as_text)
 
-    with open(file_path, 'w') as target_file:
+    with open(file_path, 'wt') as target_file:
         target_file.write(modified_file_as_text)
 
 

@@ -24,18 +24,14 @@ def test_output_shape(data, linear_softmax_classifier=LinearSoftmaxClassifier):
             "Classifier output must match the number of input samples"
 
 
-def test_increase_acc(data, linear_softmax_classifier=LinearSoftmaxClassifier):
+def test_decrease_loss(data, linear_softmax_classifier=LinearSoftmaxClassifier):
     with ExceptionInterception():
         X_train, _, y_train, _ = data
-        acc_list = []
-        for num_epochs in [1, 10, 50, 100, 200, 300, 400]:
-            clf = linear_softmax_classifier()
-            clf.fit(X_train, y_train, batch_size=20, epochs=num_epochs)
-            y_pred_train = clf.predict(X_train)
-            acc_list.append(accuracy_score(y_train, y_pred_train))
+        clf = linear_softmax_classifier()
+        loss_history = clf.fit(X_train, y_train, batch_size=20, epochs=50)
 
-        assert sorted(acc_list) == acc_list, \
-            "Accuracy should increase as number of epochs increase(until some moment)"
+        assert sorted(loss_history, reverse=True) == loss_history, \
+            "Loss should decrease with each successive epoch"
 
 
 def test_evaluation(data, linear_softmax_classifier=LinearSoftmaxClassifier):
@@ -55,7 +51,7 @@ def test_all(linear_softmax_classifier=LinearSoftmaxClassifier):
 
     # pre-train tests
     test_output_shape(data, linear_softmax_classifier)
-    test_increase_acc(data_scaled, linear_softmax_classifier)
+    test_decrease_loss(data_scaled, linear_softmax_classifier)
     # evaluation tests
     test_evaluation(data_scaled, linear_softmax_classifier)
 

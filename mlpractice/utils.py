@@ -6,6 +6,7 @@ from distutils.dir_util import copy_tree
 from IPython import get_ipython
 
 import mlpractice
+from mlpractice.stats.stats_utils import _init_stats
 
 
 class StopExecution(Exception):
@@ -109,3 +110,5 @@ def init():
                 inject_sources_into_template(file_path)
 
     print(f'Initialized a directory with tasks at {tasks_dir}')
+    # initialize a file with statistics about user's progress
+    _init_stats()

@@ -1,3 +1,4 @@
+from mlpractice.stats.stats_utils import print_stats, _update_stats
 from mlpractice.utils import ExceptionInterception
 
 try:
@@ -17,6 +18,8 @@ def test_all(softmax=softmax):
     test_normalization(softmax)
     test_random(softmax, 100)
     print('All tests passed!')
+    _update_stats('linear_classifier', 'softmax')
+    print_stats('linear_classifier')
 
 
 def test_interface(softmax=softmax):

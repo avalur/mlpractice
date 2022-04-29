@@ -1,3 +1,4 @@
+from mlpractice.stats.stats_utils import print_stats, _update_stats
 from mlpractice.utils import ExceptionInterception
 
 try:
@@ -16,6 +17,8 @@ def test_all(l2_regularization=l2_regularization):
     test_default(l2_regularization)
     test_random(l2_regularization, 100)
     print('All tests passed!')
+    _update_stats('linear_classifier', 'l2_regularization')
+    print_stats('linear_classifier')
 
 
 def test_interface(l2_regularization=l2_regularization):

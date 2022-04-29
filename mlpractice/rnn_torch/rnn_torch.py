@@ -80,16 +80,16 @@ class CharRNNCell(nn.Module):
 
         Parameters
         ----------
-        x : LongTensor, shape(batch_size)
+        x : torch.LongTensor, shape(batch_size)
             Batch of character ids.
-        h_prev : FloatTensor, shape(batch_size, num_units)
+        h_prev : torch.FloatTensor, shape(batch_size, num_units)
             Previous rnn hidden states.
 
         Returns
         -------
-        h_next : FloatTensor, shape(batch_size, num_units)
+        h_next : torch.FloatTensor, shape(batch_size, num_units)
             Next rnn hidden states.
-        x_next_proba : FloatTensor, shape(batch_size, num_tokens)
+        x_next_proba : torch.FloatTensor, shape(batch_size, num_tokens)
             Predicted probabilities for the next token.
         """
         # get vector embedding of x

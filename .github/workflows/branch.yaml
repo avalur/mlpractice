@@ -26,3 +26,5 @@ jobs:
         run: poetry install
       - name: Run tests
         run: poetry run pytest --cov=./ --cov-report=xml
+      - name: Test the task init procedure
+        run: poetry run mlpractice init

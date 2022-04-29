@@ -1,1 +1,0 @@
-{"linear_classifier": {"softmax": 1, "cross_entropy_loss": 1, "softmax_with_cross_entropy": 1, "l2_regularization": 1, "linear_softmax": 1}, "rnn_torch": {"make_token_to_id": 0, "make_tokens": 0}}

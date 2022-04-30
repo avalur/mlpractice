@@ -4,6 +4,7 @@ import re
 import sys
 from distutils.dir_util import copy_tree
 from IPython import get_ipython
+import traceback
 
 import mlpractice
 from mlpractice.stats.stats_utils import _init_stats
@@ -37,12 +38,17 @@ class ExceptionInterception:
     def __enter__(self):
         return None
 
-    def __exit__(self, exc_type, exc_val, traceback):
-        if exc_val is not None:
-            # print the exception message and traceback
-            self.ip.showtraceback((exc_type, exc_val, traceback))
-            # raise a silent exception to interrupt the kernel
-            raise StopExecution
+    def __exit__(self, exc_type, exc_val, trace):
+        if exc_val:
+            if self.ip:
+                # print the exception message and traceback with IPython
+                self.ip.showtraceback((exc_type, exc_val, trace))
+                # raise a silent exception to interrupt the kernel
+                raise StopExecution
+            else:
+                # print the exception message and traceback without IPython
+                traceback.print_exception(exc_type, exc_val, trace)
+                sys.exit(1)
         return True
 
 

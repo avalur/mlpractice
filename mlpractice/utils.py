@@ -3,7 +3,9 @@ import os
 import re
 import sys
 from distutils.dir_util import copy_tree
+from io import StringIO
 from IPython import get_ipython
+from IPython.utils.capture import capture_output
 import traceback
 
 import mlpractice
@@ -34,11 +36,26 @@ class ExceptionInterception:
     """
     def __init__(self):
         self.ip = get_ipython()
+        if self.ip:
+            self.display_capture = capture_output(False, False, True)
 
     def __enter__(self):
+        self.old_stdout = sys.stdout
+        self.old_stderr = sys.stderr
+        self.out = StringIO()
+        self.err = StringIO()
+        sys.stdout = self.out
+        sys.stderr = self.err
+        if self.ip:
+            self.display_capture.__enter__()
         return None
 
     def __exit__(self, exc_type, exc_val, trace):
+        if self.ip:
+            self.display_capture.__exit__(exc_type, exc_val, trace)
+        sys.stdout = self.old_stdout
+        sys.stderr = self.old_stderr
+
         if exc_val:
             if self.ip:
                 # print the exception message and traceback with IPython
@@ -49,6 +66,7 @@ class ExceptionInterception:
                 # print the exception message and traceback without IPython
                 traceback.print_exception(exc_type, exc_val, trace)
                 sys.exit(1)
+
         return True
 
 

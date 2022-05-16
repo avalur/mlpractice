@@ -28,13 +28,15 @@ def create_app():
             stats = literal_eval(request.form['stats'])
 
             data_base = db.get_db()
-            users = data_base.execute('SELECT username FROM user').fetchall()
+            users = [username[0] for username in data_base.execute('SELECT username FROM user')]
             if username not in users:
                 error = auth.register(username, password, data_base)
             else:
                 error = auth.login(username, password, data_base)
 
             # TODO: как-то вывести ошибку пользователю в ноутбук
+            if error:
+                return error
 
             worksheet = authorize_and_return_worksheet()
             update_ws_stats(worksheet, username, stats)

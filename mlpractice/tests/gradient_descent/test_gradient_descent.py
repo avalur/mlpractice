@@ -91,6 +91,7 @@ def test_public(descent=GradientDescent):
         assert np.allclose(desc.W, np.array([[1.0], [1.0], [1.0]]) - diff, atol=10 ** -6), \
             'difference misuse noticed'
 
+
 def test_default(descent=GradientDescent):
     with ExceptionInterception():
         input_W = np.array([[0.0], [0.0], [0.0], [0.0], [0.0]])
@@ -125,14 +126,14 @@ def test_random(descent=GradientDescent, iterations=1):
     with ExceptionInterception():
         np.random.seed(214)
         for test in range(iterations):
-            inp_iteration = int(np.random.random() * 100)
+            inp_iteration = int(np.random.random() * 100) + 1
             inp_lambda = int(np.random.random() * 10)
-            samples_number = int(np.random.random() * 100)
+            samples_number = int(np.random.random() * 100) + 1
             weight_length = int(np.random.random() * 9) + 1
             inp_w0 = 20 * np.random.ranf((weight_length, 1)) - 10
             inp_X = 200 * np.random.ranf((samples_number, weight_length)) - 100
             inp_Y = 200 * np.random.ranf((samples_number, 1)) - 100
-            eta =  lambda k: inp_lambda * (1 / (1 + k)) ** 0.5
+            eta = lambda k: inp_lambda * (1 / (1 + k)) ** 0.5
 
             desc = descent(inp_w0, inp_lambda)
             grad = desc.calc_gradient(inp_X, inp_Y)

@@ -156,9 +156,9 @@ def test_random(descent=MomentumDescent, iterations=1):
     with ExceptionInterception():
         np.random.seed(214)
         for test in range(iterations):
-            inp_iteration = int(np.random.random() * 100)
+            inp_iteration = int(np.random.random() * 100) + 1
             inp_lambda = int(np.random.random() * 10)
-            samples_number = int(np.random.random() * 100)
+            samples_number = int(np.random.random() * 100) + 1
             weight_length = int(np.random.random() * 9) + 1
             inp_w0 = 20 * np.random.ranf((weight_length, 1)) - 10
             inp_X = 200 * np.random.ranf((samples_number, weight_length)) - 100
@@ -188,6 +188,3 @@ def test_random(descent=MomentumDescent, iterations=1):
             expected_diff = 0.1 * diff + eta(inp_iteration + 1) * grad_2
             assert np.allclose(diff_2, expected_diff, atol=10 ** -6)
             assert np.allclose(desc.W, inp_w0 - diff - diff_2, atol=10 ** -6)
-
-if __name__ == '__main__':
-    test_all()

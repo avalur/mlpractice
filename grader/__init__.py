@@ -3,6 +3,8 @@ import os
 from flask import Flask, request
 from .gdoc import authorize_and_return_worksheet, update_ws_stats
 from ast import literal_eval
+from . import db
+from . import auth
 
 
 def create_app():
@@ -20,15 +22,24 @@ def create_app():
     @app.route('/grade', methods=['POST', 'GET'])
     def grader():
         if request.method == 'POST':
-            name = request.form['name']
+            username = request.form['username']
+            password = request.form['password']
             # TODO: надо принимать функцию, чтобы ее прогнать по тестам (безопасно) и получить stats, но пока так
             stats = literal_eval(request.form['stats'])
 
+            data_base = db.get_db()
+            users = data_base.execute('SELECT username FROM user').fetchall()
+            if username not in users:
+                error = auth.register(username, password, data_base)
+            else:
+                error = auth.login(username, password, data_base)
+
+            # TODO: как-то вывести ошибку пользователю в ноутбук
+
             worksheet = authorize_and_return_worksheet()
-            update_ws_stats(worksheet, name, stats)
+            update_ws_stats(worksheet, username, stats)
         return "Grading grades"
 
-    from . import db
     db.init_app(app)
 
     return app

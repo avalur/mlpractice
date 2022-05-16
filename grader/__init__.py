@@ -34,9 +34,8 @@ def create_app():
             else:
                 error = auth.login(username, password)
 
-            # TODO: как-то вывести ошибку пользователю в ноутбук
             if error:
-                return error
+                raise ValueError(error)
 
             worksheet = authorize_and_return_worksheet()
             update_ws_stats(worksheet, username, stats)

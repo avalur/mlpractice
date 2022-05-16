@@ -141,7 +141,7 @@ def init():
 
 def submit(username, password, stats):
     """Submits solutions to server"""
-    requests.post(
+    r = requests.post(
         "SERVER",
         data={
             "username": username,
@@ -149,4 +149,9 @@ def submit(username, password, stats):
             "stats": stats
         }
     )
-
+    html = r.text
+    possible_error = html[html.find('<title>') + 7: html.find(' //')]
+    if possible_error.startswith('ValueError'):
+        print(possible_error)
+    else:
+        print("Successfully submitted!")

@@ -1,18 +1,16 @@
 import numpy as np
 
 
-S0_default: float = 1
-P_default: float = 0.5
+class BaseValues:
+    S0_default: float = 1
+    P_default: float = 0.5
+    batch_size_default: int = 1
+    alpha_default: float = 0.1
+    eps_default: float = 1e-8
+    mu_default = 1e-2
+    tolerance_default: float = 1e-3
+    max_iter_default: int = 1000
 
-batch_size_default: int = 1
-
-alpha_default: float = 0.1
-eps_default: float = 1e-8
-
-mu_default = 1e-2
-
-tolerance_default: float = 1e-3
-max_iter_default: int = 1000
 
 class BaseDescent:
     r"""A base class and examples for all functions
@@ -83,8 +81,9 @@ class GradientDescent(BaseDescent):
     W : np.ndarray
         Weights.
     """
-    def __init__(self, W0: np.ndarray, lambda_: float, alpha: float = alpha_default,
-                 S0: float = S0_default, P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -92,8 +91,6 @@ class GradientDescent(BaseDescent):
             Initialize weights.
         lambda_: float
             Learning rate parameter (step scale)
-        alpha: float
-            Momentum coefficient
         S0: float
             Learning rate parameter
         P: float
@@ -149,8 +146,10 @@ class StochasticDescent(BaseDescent):
         Weights.
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, S0: float = S0_default, P: float = P_default,
-                 batch_size: int = batch_size_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default,
+                 batch_size: int = BaseValues.batch_size_default):
         r"""
         Parameters
         ----------
@@ -216,8 +215,10 @@ class MomentumDescent(BaseDescent):
         Weights.
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, alpha: float = alpha_default, S0: float = S0_default,
-                 P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 alpha: float = BaseValues.alpha_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -284,8 +285,10 @@ class Adagrad(BaseDescent):
         Weights.
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, eps: float = eps_default, S0: float = S0_default,
-                 P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 eps: float = BaseValues.eps_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -351,8 +354,10 @@ class GradientDescentReg(GradientDescent):
         l2 regularization coefficient
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, mu: float = mu_default, S0: float = S0_default,
-                 P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 mu: float = BaseValues.mu_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -409,8 +414,11 @@ class StochasticDescentReg(StochasticDescent):
         l2 regularization coefficient
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, mu: float = mu_default, S0: float = S0_default,
-                 P: float = P_default, batch_size: int = batch_size_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 mu: float = BaseValues.mu_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default,
+                 batch_size: int = BaseValues.batch_size_default):
         r"""
         Parameters
         ----------
@@ -466,8 +474,11 @@ class MomentumDescentReg(MomentumDescent):
         l2 regularization coefficient
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, alpha: float = alpha_default, mu: float = mu_default,
-                 S0: float = S0_default, P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 alpha: float = BaseValues.alpha_default,
+                 mu: float = BaseValues.mu_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -524,8 +535,11 @@ class AdagradReg(Adagrad):
         l2 regularization coefficient
     """
 
-    def __init__(self, W0: np.ndarray, lambda_: float, eps: float = eps_default, mu: float = mu_default,
-                 S0: float = S0_default, P: float = P_default):
+    def __init__(self, W0: np.ndarray, lambda_: float,
+                 eps: float = BaseValues.eps_default,
+                 mu: float = BaseValues.mu_default,
+                 S0: float = BaseValues.S0_default,
+                 P: float = BaseValues.P_default):
         r"""
         Parameters
         ----------
@@ -589,7 +603,9 @@ class LinearRegression:
         Progress history
     """
 
-    def __init__(self, descent, tolerance: float = tolerance_default, max_iter: int = max_iter_default):
+    def __init__(self, descent,
+                 tolerance: float = BaseValues.tolerance_default,
+                 max_iter: int = BaseValues.max_iter_default):
         r"""
         Parameters
         ----------
@@ -605,7 +621,7 @@ class LinearRegression:
         self.max_iter = max_iter
         self.loss_history = []
 
-    def fit(self, X: np.ndarray, Y: np.ndarray) -> LinearRegression:
+    def fit(self, X: np.ndarray, Y: np.ndarray) -> 'LinearRegression':
         r"""Getting objects, fitting descent weights
 
         Parameters

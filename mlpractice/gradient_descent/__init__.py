@@ -3,6 +3,7 @@ r"""This is the third (?) task of the mlpractice package.
 You should fill in the gaps in the given function templates.
 """
 from .gradient_descent import (
+    BaseValues,
     BaseDescent,
     GradientDescent,
     StochasticDescent,

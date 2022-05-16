@@ -30,9 +30,9 @@ def create_app():
             data_base = db.get_db()
             users = [username[0] for username in data_base.execute('SELECT username FROM user')]
             if username not in users:
-                error = auth.register(username, password, data_base)
+                error = auth.register(username, password)
             else:
-                error = auth.login(username, password, data_base)
+                error = auth.login(username, password)
 
             # TODO: как-то вывести ошибку пользователю в ноутбук
             if error:

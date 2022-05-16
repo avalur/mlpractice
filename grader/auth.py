@@ -2,7 +2,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .db import get_db
 
 
-def register(username, password, data_base):
+def register(username, password):
+    data_base = get_db()
     error = None
 
     if not username:
@@ -19,7 +20,8 @@ def register(username, password, data_base):
     return error
 
 
-def login(username, password, data_base):
+def login(username, password):
+    data_base = get_db()
     user = data_base.execute(
         'SELECT * FROM user WHERE username = ?', (username,)
     ).fetchone()

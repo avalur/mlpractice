@@ -134,7 +134,7 @@ def test_random(descent=StochasticDescent, iterations=1):
         for test in range(iterations):
             seed = int(np.random.random() * 10000)
             inp_iteration = int(np.random.random() * 100) + 1
-            inp_lambda = int(np.random.random() * 10)
+            inp_lambda = np.random.random() * 10
             samples_number = int(np.random.random() * 100) + 1
             weight_length = int(np.random.random() * 9) + 1
             inp_w0 = 20 * np.random.ranf((weight_length, 1)) - 10

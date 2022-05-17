@@ -182,6 +182,3 @@ def test_random(descent=Adagrad, iterations=1):
                 'wrong difference calculated'
             assert np.allclose(desc.W, inp_w0 - diff - diff_2, atol=10 ** -6), \
                 'difference misuse noticed'
-
-if __name__ == '__main__':
-    test_all()

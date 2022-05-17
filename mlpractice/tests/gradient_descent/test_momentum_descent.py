@@ -171,11 +171,15 @@ def test_random(descent=MomentumDescent, iterations=1):
             expected_grad = 2 * np.dot(inp_X.T,
                                        (np.dot(inp_X,
                                                inp_w0) - inp_Y)) / samples_number
-            assert np.allclose(grad, expected_grad, atol=10 ** -6)
+            assert np.allclose(grad, expected_grad, atol=10 ** -6), \
+                'wrong gradient received'
+
             diff = desc.update_weights(grad, inp_iteration)
             expected_diff = eta(inp_iteration) * grad
-            assert np.allclose(diff, expected_diff, atol=10 ** -6)
-            assert np.allclose(desc.W, inp_w0 - diff, atol=10 ** -6)
+            assert np.allclose(diff, expected_diff, atol=10 ** -6), \
+                'wrong difference calculated'
+            assert np.allclose(desc.W, inp_w0 - diff, atol=10 ** -6), \
+                'difference misuse noticed'
 
             # h changed
 
@@ -183,8 +187,12 @@ def test_random(descent=MomentumDescent, iterations=1):
             expected_grad = 2 * np.dot(inp_X.T,
                                        (np.dot(inp_X,
                                                desc.W) - inp_Y)) / samples_number
-            assert np.allclose(grad_2, expected_grad, atol=10 ** -6)
+            assert np.allclose(grad_2, expected_grad, atol=10 ** -6), \
+                'wrong gradient received'
+
             diff_2 = desc.update_weights(grad_2, inp_iteration + 1)
             expected_diff = 0.1 * diff + eta(inp_iteration + 1) * grad_2
-            assert np.allclose(diff_2, expected_diff, atol=10 ** -6)
-            assert np.allclose(desc.W, inp_w0 - diff - diff_2, atol=10 ** -6)
+            assert np.allclose(diff_2, expected_diff, atol=10 ** -6), \
+                'wrong difference calculated'
+            assert np.allclose(desc.W, inp_w0 - diff - diff_2, atol=10 ** -6), \
+                'difference misuse noticed'

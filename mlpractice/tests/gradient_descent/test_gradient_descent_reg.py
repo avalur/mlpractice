@@ -151,6 +151,3 @@ def test_random(descent=GradientDescentReg, iterations=1):
                 'wrong difference calculated'
             assert np.allclose(desc.W, inp_w0 - diff, atol=10 ** -6), \
                 'difference misuse noticed'
-
-if __name__ == '__main__':
-    test_all()

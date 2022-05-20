@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score
 from mlpractice.tests.linear_classifier.data_prep import load_and_split_data
 
 
-def test_output_shape(data, linear_softmax_classifier=LinearSoftmaxClassifier):
+def _test_output_shape(data, linear_softmax_classifier=LinearSoftmaxClassifier):
     with ExceptionInterception():
         X_train, _, y_train, _ = data
         clf = linear_softmax_classifier()
@@ -21,7 +21,7 @@ def test_output_shape(data, linear_softmax_classifier=LinearSoftmaxClassifier):
             "Classifier output must match the number of input samples"
 
 
-def test_decrease_loss(data, linear_softmax_classifier=LinearSoftmaxClassifier):
+def _test_decrease_loss(data, linear_softmax_classifier=LinearSoftmaxClassifier):
     with ExceptionInterception():
         X_train, _, y_train, _ = data
         clf = linear_softmax_classifier()
@@ -31,7 +31,7 @@ def test_decrease_loss(data, linear_softmax_classifier=LinearSoftmaxClassifier):
             "Loss should decrease with each successive epoch"
 
 
-def test_evaluation(data, linear_softmax_classifier=LinearSoftmaxClassifier):
+def _test_evaluation(data, linear_softmax_classifier=LinearSoftmaxClassifier):
     with ExceptionInterception():
         X_train, X_test, y_train, y_test = data
         clf = linear_softmax_classifier()
@@ -47,9 +47,9 @@ def test_all(linear_softmax_classifier=LinearSoftmaxClassifier):
     data_scaled = load_and_split_data(scale=True)
 
     # pre-train tests
-    test_output_shape(data, linear_softmax_classifier)
-    test_decrease_loss(data_scaled, linear_softmax_classifier)
+    _test_output_shape(data, linear_softmax_classifier)
+    _test_decrease_loss(data_scaled, linear_softmax_classifier)
     # evaluation tests
-    test_evaluation(data_scaled, linear_softmax_classifier)
+    _test_evaluation(data_scaled, linear_softmax_classifier)
 
     print("All tests passed!")

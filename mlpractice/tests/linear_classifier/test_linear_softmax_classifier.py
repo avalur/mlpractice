@@ -7,7 +7,7 @@ except ImportError:
     LinearSoftmaxClassifier = None
 
 from sklearn.metrics import accuracy_score
-from data_prep import load_and_split_data
+from mlpractice.tests.linear_classifier.data_prep import load_and_split_data
 
 
 def test_output_shape(data, linear_softmax_classifier=LinearSoftmaxClassifier):

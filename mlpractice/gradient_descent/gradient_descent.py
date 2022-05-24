@@ -1,5 +1,5 @@
 import numpy as np
-
+from typing import Union
 
 class BaseValues:
     S0_default: float = 1
@@ -593,7 +593,8 @@ class LinearRegression:
 
     Attributes
     ----------
-    descent: (((Gradient|Stochastic|Momentum)Descent)|Adagrad)(Reg)?
+    descent: Union[GradientDescent, StochasticDescent, MomentumDescent, Adagrad,
+                   GradientDescentReg, StochasticDescentReg, MomentumDescentReg, AdagradReg]?
         Descent class    
     tolerance: float
         Stopping criterion for square of euclidean norm of weight difference
@@ -603,13 +604,15 @@ class LinearRegression:
         Progress history
     """
 
-    def __init__(self, descent,
+    def __init__(self, descent: Union[GradientDescent, StochasticDescent, MomentumDescent, Adagrad,
+                                      GradientDescentReg, StochasticDescentReg, MomentumDescentReg, AdagradReg],
                  tolerance: float = BaseValues.tolerance_default,
                  max_iter: int = BaseValues.max_iter_default):
         r"""
         Parameters
         ----------
-        descent: (((Gradient|Stochastic|Momentum)Descent)|Adagrad)(Reg)?
+        descent: Union[GradientDescent, StochasticDescent, MomentumDescent, Adagrad,
+                       GradientDescentReg, StochasticDescentReg, MomentumDescentReg, AdagradReg]?
             Descent class    
         tolerance: float
             Stopping criterion for square of euclidean norm of weight difference

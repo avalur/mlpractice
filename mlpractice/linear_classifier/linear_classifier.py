@@ -148,6 +148,7 @@ class LinearSoftmaxClassifier:
         loss_history : array_like
             Holds a record of the loss values during training.
         """
+        np.random.seed(13)
         n_train = X.shape[0]
         n_features = X.shape[1]
         n_classes = np.max(y) + 1

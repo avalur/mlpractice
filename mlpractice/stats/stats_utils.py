@@ -21,6 +21,7 @@ def _init_stats() -> dict:
             'softmax_with_cross_entropy': 0,
             'l2_regularization': 0,
             'linear_softmax': 0,
+            'linear_classifier': 0,
         },
         'rnn_torch': {
             'make_token_to_id': 0,

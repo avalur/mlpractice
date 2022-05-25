@@ -1,3 +1,4 @@
+from mlpractice.stats.stats_utils import print_stats, _update_stats
 from mlpractice.utils import ExceptionInterception
 
 try:
@@ -16,6 +17,8 @@ def test_all(softmax_with_cross_entropy=softmax_with_cross_entropy):
     test_normalization(softmax_with_cross_entropy)
     test_random(softmax_with_cross_entropy, 100)
     print('All tests passed!')
+    _update_stats('linear_classifier', 'softmax_with_cross_entropy')
+    print_stats('linear_classifier')
 
 
 def test_interface(softmax_with_cross_entropy=softmax_with_cross_entropy):

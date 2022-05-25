@@ -7,12 +7,12 @@ def softmax(predictions):
 
     Parameters
     ----------
-    predictions : ndarray, shape(n_classes) or shape(batch_size, n_classes)
+    predictions : np.ndarray, shape(n_classes) or shape(batch_size, n_classes)
         Classifier output.
 
     Returns
     -------
-    probs : ndarray
+    probs : np.ndarray
         Array with probabilities of belonging to each of the classes,
         with the same shape as `predictions`.
     """
@@ -26,9 +26,9 @@ def cross_entropy_loss(probs, target_index):
 
     Parameters
     ----------
-    probs : ndarray, shape(n_classes) or shape(batch_size, n_classes)
+    probs : np.ndarray, shape(n_classes) or shape(batch_size, n_classes)
         Array with probabilities of belonging to each of the classes.
-    target_index : ndarray, shape(1) or shape(batch_size)
+    target_index : np.ndarray, shape(1) or shape(batch_size)
         Index(indices) of the true class(es) for given sample(s).
 
     Returns
@@ -47,16 +47,16 @@ def softmax_with_cross_entropy(predictions, target_index):
 
     Parameters
     ----------
-    predictions : ndarray, shape(n_classes) or shape(batch_size, n_classes)
+    predictions : np.ndarray, shape(n_classes) or shape(batch_size, n_classes)
         Classifier output.
-    target_index : ndarray, shape(1) or shape(batch_size)
+    target_index : np.ndarray, shape(1) or shape(batch_size)
         Index(indices) of the true class(es) for given sample(s).
 
     Returns
     -------
     loss : float
         Computed cross-entropy loss value.
-    d_predictions : ndarray
+    d_predictions : np.ndarray
         Array, with the same shape as `predictions`. Gradient of loss value
         with respect to predictions.
     """
@@ -70,7 +70,7 @@ def l2_regularization(W, reg_strength):
 
     Parameters
     ----------
-    W : ndarray, shape(n_features, n_classes)
+    W : np.ndarray, shape(n_features, n_classes)
         Weights.
     reg_strength : float
         Strength of regularization.
@@ -79,7 +79,7 @@ def l2_regularization(W, reg_strength):
     -------
     loss : float
         L2 regularization loss.
-    gradient : ndarray, shape(n_features, n_classes)
+    gradient : np.ndarray, shape(n_features, n_classes)
         Gradient of L2 loss value with respect to weights.
     """
     # TODO: implement l2_regularization
@@ -93,18 +93,18 @@ def linear_softmax(X, W, target_index):
 
     Parameters
     ----------
-    X : ndarray, shape(batch_size, n_features)
+    X : np.ndarray, shape(batch_size, n_features)
         Batch of images.
-    W : ndarray, shape(n_features, n_classes)
+    W : np.ndarray, shape(n_features, n_classes)
         Weights.
-    target_index : ndarray, shape(batch_size)
+    target_index : np.ndarray, shape(batch_size)
         Indices of the true classes for given samples.
 
     Returns
     -------
     loss : float
         Computed cross-entropy loss value.
-    gradient : ndarray, shape(n_features, n_classes)
+    gradient : np.ndarray, shape(n_features, n_classes)
         Gradient of loss with respect to weights.
     """
     # TODO: implement linear_softmax
@@ -118,7 +118,7 @@ class LinearSoftmaxClassifier:
 
     Attributes
     ----------
-    W : ndarray
+    W : np.ndarray
         Weights.
     """
     def __init__(self):
@@ -130,9 +130,9 @@ class LinearSoftmaxClassifier:
 
         Parameters
         ----------
-        X : ndarray, shape(n_samples, n_features)
+        X : np.ndarray, shape(n_samples, n_features)
             Training data.
-        y : ndarray, shape(n_samples)
+        y : np.ndarray, shape(n_samples)
             Training data class labels.
         batch_size : int, optional
             The number of samples to use for each batch.
@@ -148,6 +148,7 @@ class LinearSoftmaxClassifier:
         loss_history : array_like
             Holds a record of the loss values during training.
         """
+        np.random.seed(13)
         n_train = X.shape[0]
         n_features = X.shape[1]
         n_classes = np.max(y) + 1
@@ -178,12 +179,12 @@ class LinearSoftmaxClassifier:
 
         Parameters
         ----------
-        X : ndarray, shape(n_samples, n_features)
+        X : np.ndarray, shape(n_samples, n_features)
             Input samples.
 
         Returns
         -------
-        y_pred : ndarray, shape(n_samples)
+        y_pred : np.ndarray, shape(n_samples)
             Predicted classes.
         """
         # TODO: Implement predict

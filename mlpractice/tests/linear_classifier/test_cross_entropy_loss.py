@@ -1,3 +1,6 @@
+from mlpractice.stats.stats_utils import \
+    print_stats, _update_stats
+
 try:
     from mlpractice_solutions.mlpractice_solutions.\
         linear_classifier_solution import cross_entropy_loss
@@ -16,6 +19,8 @@ def test_all(cross_entropy_loss=cross_entropy_loss):
     test_default(cross_entropy_loss)
     test_random(cross_entropy_loss, 100)
     print('All tests passed!')
+    _update_stats('linear_classifier', 'cross_entropy_loss')
+    print_stats('linear_classifier')
 
 
 def test_interface(cross_entropy_loss=cross_entropy_loss):

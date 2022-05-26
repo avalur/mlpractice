@@ -21,11 +21,22 @@ def _init_stats() -> dict:
             'softmax_with_cross_entropy': 0,
             'l2_regularization': 0,
             'linear_softmax': 0,
-            'linear_classifier': 0,
+            'LinearSoftmaxClassifier': 0,
         },
         'rnn_torch': {
             'make_token_to_id': 0,
             'make_tokens': 0,
+        },
+        'gradient_descent': {
+            'GradientDescent': 0,
+            'StochasticDescent': 0,
+            'MomentumDescent': 0,
+            'Adagrad': 0,
+            'GradientDescentReg': 0,
+            'StochasticDescentReg': 0,
+            'MomentumDescentReg': 0,
+            'AdagradReg': 0,
+            'LinearRegression': 0,
         },
     }
     with open(_stats_path, 'w') as stats_file:

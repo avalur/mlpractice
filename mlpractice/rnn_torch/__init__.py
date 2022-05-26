@@ -11,12 +11,14 @@ from .rnn_torch import (
     make_tokens,
     make_token_to_id,
     CharRNNCell,
-    train,
+    train_rnn,
+    rnn_loop,
 )
 
 __all__ = [
     "make_tokens",
     "make_token_to_id",
     "CharRNNCell",
-    "train",
+    "train_rnn",
+    "rnn_loop",
 ]

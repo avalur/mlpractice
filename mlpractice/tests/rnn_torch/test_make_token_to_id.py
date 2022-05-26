@@ -1,6 +1,7 @@
 import random
 import string
 
+from mlpractice.stats.stats_utils import _update_stats, print_stats
 from mlpractice.utils import ExceptionInterception
 
 try:
@@ -15,6 +16,8 @@ def test_all(make_token_to_id=make_token_to_id):
     test_len(make_token_to_id)
     test_random(make_token_to_id, 100)
     print('All tests passed!')
+    _update_stats('rnn_torch', 'make_token_to_id')
+    print_stats('rnn_torch')
 
 
 def test_interface(make_token_to_id=make_token_to_id):

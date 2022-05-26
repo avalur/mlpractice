@@ -1,3 +1,5 @@
+from mlpractice.stats.stats_utils import _update_stats, print_stats
+
 try:
     from mlpractice_solutions.mlpractice_solutions.gradient_descent_solutions import LinearRegression
     from mlpractice_solutions.mlpractice_solutions.gradient_descent_solutions import GradientDescent
@@ -33,6 +35,8 @@ def test_all(regression=LinearRegression, descents=tuple([GradientDescent, Stoch
     test_default(regression)
     test_random(regression, descents, 5)
     print('All tests passed!')
+    _update_stats('gradient_descent', 'LinearRegression')
+    print_stats('gradient_descent')
 
 
 def test_interface(regression=LinearRegression, descents=tuple([GradientDescent, StochasticDescent,

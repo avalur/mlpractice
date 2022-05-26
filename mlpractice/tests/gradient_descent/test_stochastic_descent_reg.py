@@ -1,3 +1,5 @@
+from mlpractice.stats.stats_utils import _update_stats, print_stats
+
 try:
     from mlpractice_solutions.mlpractice_solutions.gradient_descent_solutions import StochasticDescentReg
 except ImportError:
@@ -13,6 +15,8 @@ def test_all(descent=StochasticDescentReg):
     test_default(descent)
     test_random(descent, 100)
     print('All tests passed!')
+    _update_stats('gradient_descent', 'StochasticDescentReg')
+    print_stats('gradient_descent')
 
 
 def test_interface(descent=StochasticDescentReg):

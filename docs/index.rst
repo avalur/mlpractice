@@ -8,6 +8,7 @@ Welcome to mlpractice's documentation!
 
     linear_classifier/index.rst
     rnn_torch/index.rst
+    gradient_descent/index.rst
 
 Indices and tables
 ==================

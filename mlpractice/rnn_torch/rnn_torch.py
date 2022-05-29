@@ -98,13 +98,13 @@ class CharRNNCell(nn.Module):
         # TODO: compute next hidden state using self.rnn_update
         # hint: use torch.cat(..., dim=...) for concatenation
         raise NotImplementedError('Not implemented!')
-        h_next = ...
+        # h_next = ...
 
         h_next = torch.tanh(h_next)
 
         # TODO: compute logits for next character probs
         raise NotImplementedError('Not implemented!')
-        logits = ...
+        # logits = ...
 
         return h_next, F.log_softmax(logits, -1)
 
@@ -160,7 +160,7 @@ def train_rnn(encoded_lines, model, optimizer, iterations=1000):
 
         # TODO: compute loss
 
-        loss = ...
+        # loss = ...
 
         # TODO: train with backprop
 
@@ -172,3 +172,4 @@ def train_rnn(encoded_lines, model, optimizer, iterations=1000):
             plt.show()
 
     return training_history
+

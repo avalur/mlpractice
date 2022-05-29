@@ -80,16 +80,16 @@ class CharRNNCell(nn.Module):
 
         Parameters
         ----------
-        x : LongTensor, shape(batch_size)
+        x : torch.LongTensor, shape(batch_size)
             Batch of character ids.
-        h_prev : FloatTensor, shape(batch_size, num_units)
+        h_prev : torch.FloatTensor, shape(batch_size, num_units)
             Previous rnn hidden states.
 
         Returns
         -------
-        h_next : FloatTensor, shape(batch_size, num_units)
+        h_next : torch.FloatTensor, shape(batch_size, num_units)
             Next rnn hidden states.
-        x_next_proba : FloatTensor, shape(batch_size, num_tokens)
+        x_next_proba : torch.FloatTensor, shape(batch_size, num_tokens)
             Predicted probabilities for the next token.
         """
         # get vector embedding of x
@@ -126,17 +126,19 @@ def rnn_loop(char_rnn, batch_ix):
     return torch.stack(log_probs, dim=1)
 
 
-def train_rnn(encoded_lines, model, optimizer):
+def train_rnn(encoded_lines, model, optimizer, iterations=1000):
     r"""Trains RNN on a given text.
 
     Parameters
     ----------
-    encoded_lines : np.ndarray, shape(, MAX_LENGTH)
+    encoded_lines : np.ndarray, shape(n_samples, MAX_LENGTH)
         Lines of input text converted to a matrix.
     model : torch.nn.Module
         A model to train.
     optimizer : torch.optim.Optimizer
         Optimizer that will be used to train a model.
+    iterations : int, optional
+        Number of optimization steps that the model will make.
 
     Returns
     -------
@@ -145,7 +147,7 @@ def train_rnn(encoded_lines, model, optimizer):
     """
     training_history = []
 
-    for i in range(1000):
+    for i in range(iterations):
         batch_indices = np.random.choice(len(encoded_lines), 32, replace=False)
 
         batch_ix = encoded_lines[batch_indices]

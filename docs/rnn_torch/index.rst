@@ -10,3 +10,5 @@ rnn_torch
 
    make_tokens
    make_token_to_id
+   CharRNNCell
+   train_rnn

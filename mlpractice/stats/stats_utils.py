@@ -140,7 +140,7 @@ def _update_stats(hw_name: str, task_name: str):
 def submit(username, password, stats):
     """Submits solutions to server"""
     r = requests.post(
-        "SERVER",
+        "https://mlpractice.pythonanywhere.com/grade",
         data={
             "username": username,
             "password": password,

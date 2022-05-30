@@ -2,7 +2,6 @@ import inspect
 import os
 import re
 import sys
-import requests
 from distutils.dir_util import copy_tree
 from io import StringIO
 from IPython import get_ipython
@@ -138,20 +137,3 @@ def init():
     # initialize a file with statistics about user's progress
     _init_stats()
 
-
-def submit(username, password, stats):
-    """Submits solutions to server"""
-    r = requests.post(
-        "SERVER",
-        data={
-            "username": username,
-            "password": password,
-            "stats": stats
-        }
-    )
-    html = r.text
-    possible_error = html[html.find('<title>') + 7: html.find(' //')]
-    if possible_error.startswith('ValueError'):
-        print(possible_error)
-    else:
-        print("Successfully submitted!")

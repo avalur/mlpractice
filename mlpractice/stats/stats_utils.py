@@ -1,6 +1,7 @@
 import inspect
 import json
 import os
+import requests
 from typing import List, Union, Dict
 
 import mlpractice
@@ -134,3 +135,21 @@ def _update_stats(hw_name: str, task_name: str):
     stats[hw_name][task_name] = 1
     with open(_stats_path, 'w') as stats_file:
         json.dump(stats, stats_file)
+
+
+def submit(username, password, stats):
+    """Submits solutions to server"""
+    r = requests.post(
+        "SERVER",
+        data={
+            "username": username,
+            "password": password,
+            "stats": stats
+        }
+    )
+    html = r.text
+    possible_error = html[html.find('<title>') + 7: html.find(' //')]
+    if possible_error.startswith('ValueError'):
+        print(possible_error)
+    else:
+        print("Successfully submitted!")

@@ -137,8 +137,9 @@ def _update_stats(hw_name: str, task_name: str):
         json.dump(stats, stats_file)
 
 
-def submit(username, password, stats):
+def submit(username, password):
     """Submits solutions to server"""
+    stats = str(_get_stats())
     r = requests.post(
         "https://mlpractice.pythonanywhere.com/grade",
         data={

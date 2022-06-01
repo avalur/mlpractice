@@ -16,6 +16,17 @@ _stats_path = os.path.join(
 def _init_stats() -> dict:
     """Initialize a starting user's stats file."""
     stats = {
+        'numpy_pandas': {
+            'construct_array': 0,
+            'construct_matrix': 0,
+            'get_unique_rows': 0,
+            'lin_alg_function': 0,
+            'max_element_spec': 0,
+            'nearest_value': 0,
+            'nonzero_product': 0,
+            'replace_nans': 0,
+            'scale': 0
+        },
         'linear_classifier': {
             'softmax': 0,
             'cross_entropy_loss': 0,
